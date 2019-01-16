@@ -1,0 +1,10 @@
+.idea
+Bugfender.iml
+android/.settings
+.classpath
+.project
+android/build
+iphone/build
+java-sources.txt
+android/libs
+ios/build
