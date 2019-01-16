@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 1.0.0
+apiversion: 2
+architectures: armv7 arm64 i386 x86_64
+description: Bugfender
+author: ACA IT-Solutions
+license: Specify your license
+copyright: Copyright (c) 2019 by ACA IT-Solutions
+
+# these should not be edited
+name: Bugfender
+moduleid: be.aca.mobile.bugfender
+guid: 5f893a6c-b98f-44dd-a9d7-892bfbabeeea
+platform: iphone
+minsdk: 6.0.0.GA

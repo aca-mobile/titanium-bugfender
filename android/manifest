@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 1.0.0
+apiversion: 4
+architectures: arm64-v8a armeabi-v7a x86
+description: Bugfender
+author: Your Name
+license: Specify your license
+copyright: Copyright (c) 2018 by Your Company
+
+# these should not be edited
+name: Bugfender
+moduleid: be.aca.mobile.bugfender
+guid: 68395dfb-f499-4779-a510-04fe2e86e4e5
+platform: android
+minsdk: 7.0.0.GA
