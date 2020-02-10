@@ -13,8 +13,8 @@ Find us online on [https://mobile.aca-it.be](https://mobile.aca-it.be)!
 * Titanium Mobile SDK 7.0.0 or later for Android
 
 ## Bugfender SDK-version
-* **Android**: Bugfender Android SDK 1.1
-* **iOS**: Bugfender iOS SDK 1.6.1
+* **Android**: Bugfender Android SDK 2.0.1
+* **iOS**: Bugfender iOS SDK 1.7.0
 
 ## Download, setup and how-to use the module
 
