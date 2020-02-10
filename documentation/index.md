@@ -21,8 +21,8 @@ For more samples, please check the native SDK samples:
     * `tag` (String)
     * `message` (String)
 * `forceSendOnce();`
-* `getDeviceIdentifier();` **(Android only)** - See _properties_ for iOS/Android property
-* `getSessionIdentifier();` **(Android only)** - See _properties_ for iOS/Android property
+* `getDeviceUrl();` **(Android only)** - See _properties_ for iOS/Android property
+* `getSessionUrl();` **(Android only)** - See _properties_ for iOS/Android property
 * `getUserFeedbackActivityIntent(args);` -> `Ti.Android.Intent` **(Android only)** _iOS alternative: showUserFeedbackViewController(args);_
     * `title` (String)
     * `hint` (String)
@@ -58,13 +58,18 @@ For more samples, please check the native SDK samples:
     * `message` (String)
 * `removeDeviceKey(key);`
     * `key` (String)
+* `sendCrash();` -> `String`
+    * `title` (String)
+    * `text` (String)
 * `sendIssue();` -> `String`
     * `title` (String)
     * `text` (String)
-* `sendUserFeedback(args);` -> `String` **(Returns a String on Android only)**
+* `sendUserFeedback(args);` -> `String` 
     * `title` (String)
     * `message` (String)
 * `setApiUrl(url);` 
+    * `url` (String)
+* `setBaseUrl(url);` 
     * `url` (String)
 * `setDeviceBoolean(args);`
     * `key` (String)
@@ -119,8 +124,8 @@ For more samples, please check the native SDK samples:
 
 ### Properties (read-only)
 * `appKey` (String) **(iOS only)**
-* `deviceIdentifier` (String)
-* `sessionIdentifier` (String)
+* `deviceUrl` (String)
+* `sessionUrl` (String)
 * `forceEnabled` (Boolean) **(iOS only)**
 * `maximumLocalStorageSize` (Integer) **(iOS only)**
 * `printToConsole` (Boolean) **(iOS only)**

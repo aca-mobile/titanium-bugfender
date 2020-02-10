@@ -1,7 +1,7 @@
 var Bugfender = require('be.aca.mobile.bugfender');
 
 Bugfender.init({
-    applicationToken: "yourApplicationToken",
+    applicationToken: "eUosahXMEa4ZemuxCftoxFhgKtv17iNY",
     debug: true
 });
 
@@ -21,20 +21,20 @@ Bugfender.setMaximumLocalStorageSize(1024*1024);
 
 
 if (OS_ANDROID) {
-    console.error(Bugfender.getDeviceIdentifier());
+    console.log(Bugfender.getDeviceUrl());
 }
-console.error(Bugfender.deviceIdentifier);
+console.log(Bugfender.deviceUrl);
 
 if (OS_ANDROID) {
-    console.error(Bugfender.getSessionIdentifier());
+    console.log(Bugfender.getSessionUrl());
 }
-console.error(Bugfender.sessionIdentifier);
+console.log(Bugfender.sessionUrl);
 
 if (OS_IOS) {
-    console.error(Bugfender.appKey);
-    console.error(Bugfender.forceEnabled);
-    console.error(Bugfender.maximumLocalStorageSize);
-    console.error(Bugfender.printToConsole);
+    console.log(Bugfender.appKey);
+    console.log(Bugfender.forceEnabled);
+    console.log(Bugfender.maximumLocalStorageSize);
+    console.log(Bugfender.printToConsole);
 }
 
 Bugfender.setDeviceBoolean({
@@ -59,15 +59,20 @@ Bugfender.setDeviceString({
 
 Bugfender.removeDeviceKey("integerKey");
 
-Bugfender.sendIssue({
+console.log(Bugfender.sendCrash({
     title: "Title",
     text: "Message"
-});
+}));
 
-Bugfender.sendUserFeedback({
+console.log(Bugfender.sendIssue({
     title: "Title",
     text: "Message"
-});
+}));
+
+console.log(Bugfender.sendUserFeedback({
+    title: "Title",
+    message: "Message"
+}));
 
 Bugfender.d({
     tag: "default - d",

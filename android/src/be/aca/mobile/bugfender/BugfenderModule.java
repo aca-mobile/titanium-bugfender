@@ -13,7 +13,7 @@ import android.util.Log;
 
 import com.bugfender.sdk.Bugfender;
 import com.bugfender.sdk.LogLevel;
-import com.bugfender.sdk.internal.ui.FeedbackStyle;
+import com.bugfender.sdk.ui.FeedbackStyle;
 
 import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.kroll.KrollModule;
@@ -22,6 +22,7 @@ import org.appcelerator.titanium.TiApplication;
 import org.appcelerator.titanium.proxy.IntentProxy;
 import org.appcelerator.titanium.util.TiRHelper;
 
+import java.net.URL; 
 import java.util.UUID;
 
 @Kroll.module(name="Bugfender", id="be.aca.mobile.bugfender")
@@ -72,14 +73,16 @@ public class BugfenderModule extends KrollModule {
 
 	@Kroll.getProperty
 	@Kroll.method
-	public String getDeviceIdentifier() {
-		return Bugfender.getDeviceIdentifier();
+	public String getDeviceUrl() {
+		URL deviceUrl = Bugfender.getDeviceUrl();
+		return deviceUrl == null ? null : deviceUrl.toString();
 	}
 
 	@Kroll.getProperty
 	@Kroll.method
-	public String getSessionIdentifier() {
-		return Bugfender.getSessionIdentifier();
+	public String getSessionUrl() {
+		URL sessionUrl = Bugfender.getSessionUrl();
+		return sessionUrl == null ? null : sessionUrl.toString();
 	}
 
 	@Kroll.method
@@ -191,19 +194,30 @@ public class BugfenderModule extends KrollModule {
 
 	@Kroll.method
 	public String sendIssue(KrollDict props) {
-		UUID uuid = Bugfender.sendIssue(props.getString("title"), props.getString("text"));
-		return uuid.toString();
+		URL url = Bugfender.sendIssue(props.getString("title"), props.getString("text"));
+		return url == null ? null : url.toString();
 	}
 
 	@Kroll.method
 	public String sendUserFeedback(KrollDict props) {
-		UUID uuid = Bugfender.sendUserFeedback(props.getString("title"), props.getString("message"));
-		return uuid.toString();
+		URL url = Bugfender.sendUserFeedback(props.getString("title"), props.getString("message"));
+		return url == null ? null : url.toString();
+	}
+
+	@Kroll.method
+	public String sendCrash(KrollDict props) {
+		URL url = Bugfender.sendCrash(props.getString("title"), props.getString("text"));
+		return url == null ? null : url.toString();
 	}
 
 	@Kroll.method
 	public void setApiUrl(String url) {
 		Bugfender.setApiUrl(url);
+	}
+
+	@Kroll.method
+	public void setBaseUrl(String url) {
+		Bugfender.setBaseUrl(url);
 	}
 
 	@Kroll.method
