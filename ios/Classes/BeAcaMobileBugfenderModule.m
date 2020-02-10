@@ -119,9 +119,10 @@
     [self logWithArgs:args andLogLevel:BFLogLevelDefault];
 }
 
-- (NSString *)deviceIdentifier
+- (NSString *)deviceUrl
 {
-    return [Bugfender deviceIdentifier];
+    NSURL *deviceIdentifierUrl = [Bugfender deviceIdentifierUrl];
+    return deviceIdentifierUrl != NULL ? deviceIdentifierUrl.absoluteString : NULL;
 }
 
 - (void)e:(id)args
@@ -208,33 +209,52 @@
     [Bugfender removeDeviceKey:[TiUtils stringValue:key]];
 }
 
+- (NSString *)sendCrash:(id)args
+{
+    ENSURE_SINGLE_ARG(args, NSDictionary);
+    NSString* title = [args objectForKey:@"title"];
+    NSString* text = [args objectForKey:@"text"];
+    
+    NSURL *crashUrl = [Bugfender sendCrashWithTitle:title text:text];
+    return crashUrl != NULL ? crashUrl.absoluteString : NULL;
+}
+
 - (NSString *)sendIssue:(id)args
 {
     ENSURE_SINGLE_ARG(args, NSDictionary);
     NSString* title = [args objectForKey:@"title"];
     NSString* text = [args objectForKey:@"text"];
     
-    return [Bugfender sendIssueWithTitle:title text:text];
+    NSURL *issueUrl = [Bugfender sendIssueReturningUrlWithTitle:title text:text];
+    return issueUrl != NULL ? issueUrl.absoluteString : NULL;
 }
 
-- (void)sendUserFeedback:(id)args
+- (NSString *)sendUserFeedback:(id)args
 {
     ENSURE_SINGLE_ARG(args, NSDictionary);
     NSString* title = [args objectForKey:@"title"];
-    NSString* text = [args objectForKey:@"text"];
+    NSString* text = [args objectForKey:@"message"];
     
-    [Bugfender sendUserFeedbackWithSubject:title message:text];
+    NSURL *userFeedbackUrl =  [Bugfender sendUserFeedbackReturningUrlWithSubject:title message:text];
+    return userFeedbackUrl != NULL ? userFeedbackUrl.absoluteString : NULL;
 }
 
-- (NSString *)sessionIdentifier
+- (NSString *)sessionUrl
 {
-    return [Bugfender sessionIdentifier];
+    NSURL *sessionIdentifierUrl = [Bugfender sessionIdentifierUrl];
+    return sessionIdentifierUrl != NULL ? sessionIdentifierUrl.absoluteString : NULL;
 }
 
 - (void)setApiUrl:(id)apiUrl
 {
     ENSURE_SINGLE_ARG(apiUrl, NSString);
     [Bugfender setApiURL: apiUrl];
+}
+
+- (void)setBaseUrl:(id)baseUrl
+{
+    ENSURE_SINGLE_ARG(baseUrl, NSString);
+    [Bugfender setBaseURL: baseUrl];
 }
 
 - (void)setDeviceBoolean:(id)args
@@ -315,7 +335,7 @@
                                                                               messagePlaceholder:messageHint
                                                                                  sendButtonTitle:sendButtonText
                                                                                cancelButtonTitle:cancelButtonText
-                                                                                      completion:^(BOOL feedbackSent) {
+                                                                                      completion:^(BOOL feedbackSent, NSURL * _Nullable url) {
                                                                                           if (feedbackSentCallback != nil) {
                                                                                               NSDictionary* dict = @{ @"feedbackSent" : [NSNumber numberWithBool:feedbackSent]};;
                                                                                               NSArray* array = [NSArray arrayWithObjects: dict, nil];
