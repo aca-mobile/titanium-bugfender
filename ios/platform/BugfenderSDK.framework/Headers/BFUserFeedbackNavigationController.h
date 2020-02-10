@@ -11,12 +11,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ * Navigation View Controller containing a BFUserFeedbackNavigationController as rootViewController
+ */
 @interface BFUserFeedbackNavigationController : UINavigationController
 
 
 
 /**
- Root View Controller containing a table with the textfields used to gather feedback
+ * Root View Controller containing a table with the textfields used to gather feedback
  */
 @property (nonatomic, strong) BFUserFeedbackViewController *feedbackViewController;
 
@@ -40,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
                                                          messagePlaceholder:(NSString *)messagePlaceholder
                                                             sendButtonTitle:(NSString *)sendButtonTitle
                                                           cancelButtonTitle:(NSString *)cancelButtonTitle
-                                                                 completion:(void (^)(BOOL feedbackSent))completionBlock;
+                                                                 completion:(void (^)(BOOL feedbackSent, NSURL * _Nullable url))completionBlock;
 
 
 @end
